@@ -27,7 +27,7 @@ $token = $supermetrics_controller->token(new Client(), new Request());
 $posts_list = $supermetrics_controller->posts(
     new Client(),
     new MultiRequest(),
-    $_ENV['SUPERMETRICS_PAGES'],
-    $token
+    $token,
+    $_ENV['SUPERMETRICS_PAGES']
 );
 Json::display($supermetrics_controller->summary($calculator, $posts_list));

@@ -70,8 +70,8 @@ class SupermetricsController
     public function posts(
         ClientInterface $client,
         RequestInterface $request,
-        int $page_end = 1,
-        $token
+        $token,
+        int $page_end = 1
     ): array
     {
         for ($page = 1; $page <= $page_end; $page++) {;
