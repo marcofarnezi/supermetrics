@@ -24,6 +24,10 @@ $calculator->setRule(new AverageCharacter())
 $redis = new RedisClient($_ENV['REDIS_URL']);
 $supermetrics_controller = new SupermetricsController(new LoaderModule(), new SupermetricsFormat(), $redis);
 $token = $supermetrics_controller->token(new Client(), new Request());
-$posts_list = $supermetrics_controller->posts(new Client(), new MultiRequest(), 10, $token);
-
+$posts_list = $supermetrics_controller->posts(
+    new Client(),
+    new MultiRequest(),
+    $_ENV['SUPERMETRICS_PAGES'],
+    $token
+);
 Json::display($supermetrics_controller->summary($calculator, $posts_list));
