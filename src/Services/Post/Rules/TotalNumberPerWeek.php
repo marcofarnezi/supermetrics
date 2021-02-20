@@ -15,13 +15,13 @@ class TotalNumberPerWeek implements RuleInterface
         $this->proccessed = [];
     }
 
-    protected function weekOfYear(DateTime $date): int
+    protected function weekOfYear(DateTime $date): string
     {
         $weekOfYear = intval($date->format('W'));
         if ($date->format('n') == "1" && $weekOfYear > 51) {
             $weekOfYear = 0;
         }
-        return $weekOfYear + 1;
+        return $date->format('Y') . '-' .($weekOfYear + 1);
     }
 
     protected function isDataValid(array $data): bool

@@ -124,7 +124,7 @@ class TotalNumberPerWeekTest extends TestCase
     public function runDataProvider(): array
     {
         $date = new DateTime('2000-02-02');
-        $date2 = new DateTime('2000-03-02');
+        $date2 = new DateTime('2001-03-02');
         return [
             [
                 [
@@ -133,7 +133,7 @@ class TotalNumberPerWeekTest extends TestCase
                     ],
                 ],
                 [
-                    '6' => ['num_posts' => 1]
+                    '2000-6' => ['num_posts' => 1]
                 ]
             ],
             [
@@ -146,7 +146,7 @@ class TotalNumberPerWeekTest extends TestCase
                     ],
                 ],
                 [
-                    '6' => ['num_posts' => 2]
+                    '2000-6' => ['num_posts' => 2]
                 ]
             ],
             [
@@ -159,8 +159,8 @@ class TotalNumberPerWeekTest extends TestCase
                     ],
                 ],
                 [
-                    '6' => ['num_posts' => 1],
-                    '10' => ['num_posts' => 1]
+                    '2000-6' => ['num_posts' => 1],
+                    '2001-10' => ['num_posts' => 1]
                 ]
             ]
 
