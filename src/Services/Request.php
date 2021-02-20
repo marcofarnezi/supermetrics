@@ -36,29 +36,40 @@ class Request implements RequestInterface
 
     }
 
+    protected function setOptions($resource, array $option): void
+    {
+        curl_setopt_array($resource, $option);
+    }
+
     protected function setMethod($resource, string $method)
     {
-        curl_setopt($resource, CURLOPT_CUSTOMREQUEST, $method);
+        $this->setOptions($resource, [CURLOPT_CUSTOMREQUEST => $method]);
         return $resource;
     }
 
     protected function prepareRequest($resource)
     {
-        curl_setopt($resource, CURLOPT_HEADER, true);
-        curl_setopt($resource, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($resource, CURLOPT_FOLLOWLOCATION, true);
-
+        $this->setOptions($resource, [
+            CURLOPT_HEADER => true,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_FOLLOWLOCATION => true
+        ]);
         return $resource;
+    }
+
+    protected function getResource(string $url)
+    {
+        return curl_init($url);
     }
 
     protected function getNewResource(string $url)
     {
-        return $this->prepareRequest(curl_init($url));
+        return $this->prepareRequest($this->getResource($url));
     }
 
     protected function setPayload($resource, ClientInterface $client)
     {
-        curl_setopt_array(
+        $this->setOptions(
             $resource,
             [
                 CURLOPT_POST => $client->isMethodPost(),
