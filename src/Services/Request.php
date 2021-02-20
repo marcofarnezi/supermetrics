@@ -52,7 +52,8 @@ class Request implements RequestInterface
         $this->setOptions($resource, [
             CURLOPT_HEADER => true,
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_FOLLOWLOCATION => true
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_TIMEOUT => 300
         ]);
         return $resource;
     }
